@@ -17,6 +17,7 @@ export class GifsService {
     return this.http.get(`${this.baseUrl}/gifs/search?api_key=${this.apiKey}&q=${query}&tag=science&limit=50&offset=0&rating=G&lang=en`)
       .pipe(
         map((res: any) => {
+          console.log('unfiltered', res);
           const gifs = []
           for (let el of res.data) {
             const gif = {

@@ -12,22 +12,28 @@ import {Gif} from "../../../shared/models/gif.model";
 export class GifComponent implements OnInit {
   sub: Subscription | undefined;
   gif: Gif | undefined;
+  gifId: string | null | undefined;
 
   constructor(private activatedRoute: ActivatedRoute,
               private router: Router,
               private gifService: GifsService) { }
 
   ngOnInit(): void {
-    const gifId = this.activatedRoute.snapshot.paramMap.get('id');
-    if(gifId) {
-      this.sub = this.gifService.getGifById(gifId).subscribe((gif: Gif) => {
+    this.gifId = this.activatedRoute.snapshot.paramMap.get('id');
+    if(this.gifId) {
+      this.sub = this.gifService.getGifById(this.gifId).subscribe((gif: Gif) => {
         this.gif = gif;
       });
     }
   }
 
+  addToFavourites() {
+    console.log(this.gifId);
+  }
+
   ngOnDestroy(): void {
     this.sub?.unsubscribe();
   }
+
 
 }

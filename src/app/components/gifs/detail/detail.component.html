@@ -1,4 +1,18 @@
 <div *ngIf="gif">
-  <img [src]="gif.urlPreview" [alt]="gif.title"  width="250"/>
+  <h3 fxLayoutAlign="center">{{gif.title}}</h3>
+  <div fxLayout="row" fxLayoutGap="1em" fxLayoutAlign="center">
+    <img [src]="gif.urlPreview" [alt]="gif.title"  width="250"/>
+    <div fxLayout="column">
+      <p>author: {{gif.username}}</p>
+      <div fxLayout="row">
+        <label for="favorites">add to favorites</label>
+        <button id="favorites" mat-icon-button color="warn" aria-label="Add to favorites" (click)="addToFavourites()">
+          <mat-icon>favorite</mat-icon>
+        </button>
+      </div>
+      <p>see on <a [href]="gif.urlGiphy">giphy.com</a></p>
+      <p>added: {{gif.date | date :'mediumDate' }}</p>
+    </div>
+  </div>
 </div>
 
