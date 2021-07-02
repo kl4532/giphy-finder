@@ -1,27 +1,35 @@
-# GiphyFinder
+# angular-dev-challenge
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.1.0.
+## TODOs:
 
-## Development server
+* Build a giphy search tool that let's the user search gifs by using giphys search api (see [API docs](https://developers.giphy.com/docs/#operation--gifs-search-get)).
+* List all found gifs as you like
+* The user should then be able to store the best gifs locally as hers/his favorites (no database/server or offline support required!)
+* List all favorite gifs of the user and make them removable
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## Rules
 
-## Code scaffolding
+* Structure your application by using components and services
+* Store the favorite gifs locally. Pick any storage technology you like und you find useful. Use a service to store and retrieve the stored gifs
+* Use angular router if necessary (already pre configured)
+* You may add any UI/UX library you like (Bootstrap, Material UI, ...)
+* Provide a nice and easy to use UI/UX
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+### Extra points
 
-## Build
+You may earn extra points for things like...
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+* Usage of services, components, directives, ...
+* Structure app into different sections by using the angular router (listing page, detail page, ...)
+* Make use of RXJS
+* Clean code
+* Code structure
+* Project structure
+* (Angular) Animations
+* SCSS/CSS quality
+* Responsive design
+* git history
 
-## Running unit tests
+... and a lot more.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+Just build something you would love to use by yourself and you'll be proud to share.
