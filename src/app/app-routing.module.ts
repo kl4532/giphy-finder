@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import {GifComponent} from "./components/gif/gif.component";
+import {GifComponent} from "./components/gifs/detail/detail.component";
 import {SearchComponent} from "./components/search/search.component";
 import {FavouritesComponent} from "./components/favourites/favourites.component";
 

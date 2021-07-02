@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  API_KEY: 'pleaseChangeMe'
+  API_KEY: 'PThtYIlJcYWclGK89wKGqwadWmOOLNIv',
+  API_BASE_URL: 'https://api.giphy.com/v1'
 };
 
 /*

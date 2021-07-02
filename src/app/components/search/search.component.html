@@ -1,6 +1,6 @@
 <form *ngIf="searchForm" [formGroup]="searchForm" action="" (ngSubmit)="submitForm()" fxLayout="column">
-  <app-chiplist [options]="mockChips" formControlName="chips">
-  </app-chiplist>
+<!--  <app-chiplist [options]="mockChips" formControlName="chips">-->
+<!--  </app-chiplist>-->
   <div fxLayout="row">
     <mat-form-field class="search-container" appearance="outline" >
       <input type="input" matInput formControlName="query">
@@ -10,5 +10,7 @@
       <mat-icon>search</mat-icon>
     </button>
   </div>
-
 </form>
+<button (click)="getCategories()">Log categorise</button>
+
+<app-gifs-overview [gifs]="gifs"></app-gifs-overview>

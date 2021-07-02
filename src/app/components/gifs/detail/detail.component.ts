@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-gif',
-  templateUrl: './gif.component.html',
-  styleUrls: ['./gif.component.scss']
+  selector: 'app-gif-detail',
+  templateUrl: './detail.component.html',
+  styleUrls: ['./detail.component.scss']
 })
 export class GifComponent implements OnInit {
 
