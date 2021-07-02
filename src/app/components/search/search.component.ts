@@ -13,6 +13,7 @@ export class SearchComponent implements OnInit {
   mockChips = ['angular', 'how-to', 'how-not-to', 'tutorial', 'test very long chip'];
   searchForm: FormGroup | undefined;
   gifs: Gif[] = [];
+  submitted = false;
 
   constructor(private gifsService: GifsService) { }
 
@@ -32,7 +33,7 @@ export class SearchComponent implements OnInit {
   submitForm() {
     this.gifsService.getGifs(this.searchForm?.value.query).subscribe((gifs: any) => {
         this.gifs = gifs;
-        console.log(gifs);
+        this.submitted = true;
     });
     console.log(this.searchForm?.value);
   }

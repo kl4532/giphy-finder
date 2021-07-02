@@ -8,6 +8,7 @@ import {Gif} from "../../../shared/models/gif.model";
 })
 export class GifsOverviewComponent implements OnInit {
   @Input() gifs: Gif[] = [];
+  @Input() formSubmitted = false;
   cols = 3;
   constructor() { }
 

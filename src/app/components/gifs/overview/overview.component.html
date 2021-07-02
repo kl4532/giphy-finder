@@ -3,3 +3,4 @@
     <img [routerLink]="['/gif', gif.id]" [src]="gif.urlPreview" [alt]="gif.title"  width="250"/>
   </mat-grid-tile>
 </mat-grid-list>
+<p *ngIf="gifs && formSubmitted">No results for this phrase :(</p>
