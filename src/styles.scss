@@ -1,4 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
+@import '~@angular/material/theming';
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300&family=Yomogi&display=swap');
+
+$custom-typography: mat-typography-config($font-family: "'Lato', sans-serif");
+$custom-typography: mat-typography-config($font-family: "'Yomogi', cursive");
+
+@include mat-core($custom-typography);
 
 html, body {
   width: 100%;
@@ -7,4 +14,6 @@ html, body {
   padding: 0;
   overflow-x: hidden;
 }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body {
+  margin: 0;
+}

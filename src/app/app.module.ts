@@ -9,6 +9,10 @@ import { SearchComponent } from './components/search/search.component';
 import { FavouritesComponent } from './components/favourites/favourites.component';
 import { GifComponent } from './components/gif/gif.component';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
+import {HttpClientModule} from "@angular/common/http";
+import { ChiplistComponent } from './components/chiplist/chiplist.component';
+import {FlexLayoutModule} from "@angular/flex-layout";
+import {ReactiveFormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -16,13 +20,17 @@ import { ToolbarComponent } from './components/toolbar/toolbar.component';
     SearchComponent,
     FavouritesComponent,
     GifComponent,
-    ToolbarComponent
+    ToolbarComponent,
+    ChiplistComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MaterialModule
+    MaterialModule,
+    HttpClientModule,
+    FlexLayoutModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

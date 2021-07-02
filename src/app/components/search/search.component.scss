@@ -1,0 +1,26 @@
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.search-container {
+  padding-left: 1em;
+  width: 100%;
+  input {
+    display: flex;
+    font-size: 3em;
+    flex-wrap: nowrap;
+  }
+}
+.search-button {
+  margin: 0.3em 2em 0 0;
+  height: 5.7em;
+  min-width: 6.5em;
+  mat-icon {
+    font-size: 4em;
+    margin-right: .3em;
+    position: absolute;
+    top: 15%;
+    left: 22%;
+  }
+}
