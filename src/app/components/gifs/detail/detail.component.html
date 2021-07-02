@@ -1,1 +1,4 @@
-<p>detail works!</p>
+<div *ngIf="gif">
+  <img [src]="gif.urlPreview" [alt]="gif.title"  width="250"/>
+</div>
+

@@ -22,13 +22,12 @@ export class GifsService {
             const gif = {
               id: el.id,
               title: el.title,
-              url: el.url,
-              bitly_gif_url: el.bitly_gif_url,
-              bitly_url: el.url,
-              import_datetime: el.import_datetime,
+              urlGiphy: el.images.original.mp4,
+              urlPreview: el.images.preview_webp.url,
               type: el.type,
               username: el.username,
-              rating: el.rating
+              rating: el.rating,
+              date: el.import_datetime
             }
             gifs.push(gif)
           }
@@ -40,11 +39,29 @@ export class GifsService {
   }
 
   getCategories() {
-    return this.http.get(`${this.baseUrl}/gifs/categories?api_key=${this.apiKey}&limit=50&offset=0&rating=G&lang=en`);
+    return this.http.get(`${this.baseUrl}/gifs/categories?api_key=${this.apiKey}&limit=50&offset=0&rating=G&lang=en`)
   }
 
-  getGifById(id: String) {
-    return this.http.get(`${this.baseUrl}/gifs/${id}?api_key=${this.apiKey}`);
+  getGifById(id: String): Observable<Gif> {
+    console.log(id);
+    return this.http.get(`${this.baseUrl}/gifs/${id}?api_key=${this.apiKey}`)
+      .pipe(
+        map((res: any) => {
+          const el = res.data;
+          return {
+            id: el.id,
+            title: el.title,
+            urlGiphy: el.images.original.mp4,
+            urlPreview: el.images.preview_webp.url,
+            type: el.type,
+            username: el.username,
+            rating: el.rating,
+            date: el.import_datetime
+          }
+        }),
+        tap(data => console.log('gif from service', data)),
+        catchError(this.handleError)
+      );
   }
 
   getRandomGif(id: String) {

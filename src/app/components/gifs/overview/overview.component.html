@@ -1,4 +1,5 @@
-<ul>
-  <li *ngFor="let gif of gifs">{{gif.title}}</li>
-</ul>
-
+<mat-grid-list [cols]="cols" rowHeight="1:1" (window:resize)="onResize($event)">
+  <mat-grid-tile *ngFor="let gif of gifs">
+    <img [routerLink]="['/gif', gif.id]" [src]="gif.urlPreview" [alt]="gif.title"  width="250"/>
+  </mat-grid-tile>
+</mat-grid-list>
