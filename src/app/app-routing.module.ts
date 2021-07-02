@@ -20,7 +20,13 @@ const routes: Routes = [
   {
     path: 'favourites',
     component: FavouritesComponent
-  }
+  },
+  {
+    path: 'gif',
+    redirectTo: ''
+  },
+  { path: '**',
+    redirectTo: ''}
 ]
 
 @NgModule({
