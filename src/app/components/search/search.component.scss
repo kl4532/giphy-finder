@@ -1,17 +1,22 @@
+@import '../../shared/global';
+
 form {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+  width: 100%;
+  margin: 1em 0 0 2em;
 }
+
 .search-container {
-  padding-left: 1em;
   width: 100%;
   input {
     display: flex;
     font-size: 3em;
     flex-wrap: nowrap;
   }
+  mat-error {
+    font-size: 2em;
+  }
 }
+
 .search-button {
   margin: 0.3em 2em 0 0;
   height: 5.7em;
@@ -24,3 +29,21 @@ form {
     left: 22%;
   }
 }
+@media (min-width : $screen-tablet) {
+  .search-container {
+    padding-left: 1em;
+  }
+  form {width: 80%;}
+}
+
+@media (min-width : $screen-laptop) {
+  form {width: 60%;}
+}
+
+@media (min-width : $screen-large) {
+  form {width: 50%;}
+}
+
+
+
+

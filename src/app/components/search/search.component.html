@@ -1,16 +1,17 @@
-<form *ngIf="searchForm" [formGroup]="searchForm" action="" (ngSubmit)="submitForm()" fxLayout="column">
-<!--  <app-chiplist [options]="mockChips" formControlName="chips">-->
-<!--  </app-chiplist>-->
-  <div fxLayout="row">
-    <mat-form-field class="search-container" appearance="outline" >
-      <input type="input" matInput formControlName="query">
-      <mat-placeholder>Find me</mat-placeholder>
-    </mat-form-field>
-    <button mat-raised-button color="primary" aria-label="search" class="search-button" type="submit">
-      <mat-icon>search</mat-icon>
-    </button>
-  </div>
-</form>
-<button (click)="getCategories()">Log categorise</button>
+<div fxLayoutAlign="center">
+  <form *ngIf="searchForm" [formGroup]="searchForm" action="" (ngSubmit)="submitForm()" fxLayout="column">
+    <div fxLayout="row" >
+      <mat-form-field class="search-container" appearance="outline" >
+        <input type="input" matInput formControlName="query" placeholder="Find me...">
+        <mat-error *ngIf="searchForm.invalid">
+          Cannot be empty!
+        </mat-error>
+      </mat-form-field>
+      <button mat-raised-button color="primary" [disabled]="searchForm.invalid" aria-label="search" class="search-button" type="submit">
+        <mat-icon>search</mat-icon>
+      </button>
+    </div>
+  </form>
+</div>
 
 <app-gifs-overview [formSubmitted]="submitted" [gifs]="gifs"></app-gifs-overview>

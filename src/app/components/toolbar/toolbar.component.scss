@@ -1,12 +1,23 @@
 mat-toolbar {
-  display: flex;
-  justify-content: space-between;
+  button {
+    width: 4em;
+    height: 4em;
+  }
   .toolbar-icon {
     mat-icon {
       font-size: 3em;
+      position: absolute;
+      top: .40em;
+      left: 0.19em;
     }
   }
-  margin-bottom: 2em;
+  .fav-icon:hover {
+    color: red;
+  }
+
+  .home-icon:hover {
+    color: royalblue;
+  }
 }
 
 

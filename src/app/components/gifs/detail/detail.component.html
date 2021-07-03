@@ -1,21 +1,50 @@
-<div *ngIf="gif">
-  <h3 fxLayoutAlign="center">{{gif.title}}</h3>
-  <div fxLayout="row" fxLayoutGap="1em" fxLayoutAlign="center">
-    <img [src]="gif.urlDownsized" [alt]="gif.title"/>
-    <div fxLayout="column">
-      <p>author: {{gif.username ? gif.username : "unknown"}}</p>
-      <div fxLayout="row">
-        <button id="favorites" mat-icon-button color="warn" aria-label="Add to favorites" (click)="addToFavourites()">
-          <mat-icon>favorite</mat-icon>
-        </button>
-          <button id="download" mat-icon-button color="primary" aria-label="download" (click)="download()">
-            <mat-icon>file_download</mat-icon>
-          </button>
+<div fxLayoutAlign="center">
+  <div *ngIf="gif" class="gif-detail-container">
+    <h2 fxLayoutAlign="center">{{gif.title}}</h2>
+    <div fxLayout="column" fxLayoutGap="1em" fxLayoutAlign="center">
+      <img [src]="gif.urlDownsized" [alt]="gif.title"/>
+      <div fxLayout="row" fxLayoutAlign="space-between">
+        <div class="action-buttons">
+          <div fxLayout="row">
+            <button *ngIf="!(this.favoritesService.isFavorite(gif.id) | async)"
+                    id="favorites" mat-icon-button color="warn"
+                    aria-label="Add to favorites"
+                    (click)="this.favoritesService.addToFavorites(gif)">
+              <mat-icon>favorite</mat-icon>
+            </button>
+            <button *ngIf="this.favoritesService.isFavorite(gif.id) | async"
+                    id="favorites" mat-icon-button color="warn"
+                    aria-label="Remove from favorites"
+                    (click)="this.favoritesService.removeFromFavorites(gif.id)">
+              <mat-icon>remove</mat-icon>
+            </button>
+            <button id="download" mat-icon-button color="primary" aria-label="download" (click)="download()">
+              <mat-icon>file_download</mat-icon>
+            </button>
+            <mat-divider [vertical]="true"></mat-divider>
+            <button shareButton="facebook" mat-icon-button>
+              <fa-icon class="facebook" [icon]="icons.faFacebook"></fa-icon>
+            </button>
+            <button shareButton="twitter" mat-icon-button>
+              <fa-icon class="twitter" [icon]="icons.faTwitter"></fa-icon>
+            </button>
+            <button shareButton="copy" mat-icon-button [url]="gif.urlDownsized">
+              <mat-icon>
+                link
+              </mat-icon>
+            </button>
+          </div>
+        </div>
+
+        <div class="info" fxLayout="column">
+          <p>author: {{gif.username ? gif.username : "unknown"}}</p>
+          <p>added: {{gif.date | date :'mediumDate' }}</p>
+          <p>see on <a [href]="gif.urlGiphy">giphy.com</a></p>
+        </div>
       </div>
-      <p>see on <a [href]="gif.urlGiphy">giphy.com</a></p>
-      <p>added: {{gif.date | date :'mediumDate' }}</p>
 
     </div>
   </div>
 </div>
+
 
