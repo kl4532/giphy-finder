@@ -1,6 +1,10 @@
-<mat-grid-list [cols]="cols" rowHeight="1:1" (window:resize)="onResize($event)">
-  <mat-grid-tile *ngFor="let gif of gifs">
-    <img [routerLink]="['/gif', gif.id]" [src]="gif.urlPreview" [alt]="gif.title"  width="250"/>
+<mat-grid-list
+  [cols]="cols"
+  rowHeight="1:1"
+  (window:resize)="onResize($event)">
+  <mat-grid-tile *ngFor="let gif of displayedGifs">
+    <img [routerLink]="['/gif', gif.id]" [src]="gif.urlDownsized" [alt]="gif.title"/>
   </mat-grid-tile>
 </mat-grid-list>
-<p *ngIf="gifs && formSubmitted">No results for this phrase :(</p>
+
+<p *ngIf="gifs.length === 0 && formSubmitted">No results for this phrase :(</p>

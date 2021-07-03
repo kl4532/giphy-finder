@@ -14,7 +14,7 @@ export class GifsService {
               @Inject('API_BASE_URL') private baseUrl: string) { }
 
   getGifs(query: String): Observable<Gif[]>{
-    return this.http.get(`${this.baseUrl}/gifs/search?api_key=${this.apiKey}&q=${query}&tag=science&limit=50&offset=0&rating=G&lang=en`)
+    return this.http.get(`${this.baseUrl}/gifs/search?api_key=${this.apiKey}&q=${query}&tag=science&limit=1000&offset=0&rating=G&lang=en`)
       .pipe(
         map((res: any) => {
           console.log('unfiltered', res);
