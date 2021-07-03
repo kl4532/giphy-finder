@@ -20,14 +20,7 @@ export class SearchComponent implements OnInit {
   ngOnInit(): void {
     this.searchForm = new FormGroup({
       query: new FormControl('', Validators.required),
-      // chips: new FormControl('', Validators.required),
-      // I want more filters!
     });
-  }
-
-  getCategories() {
-    const chips = this.searchForm?.value.chips
-    this.gifsService.getCategories().subscribe(res => console.log(res));
   }
 
   submitForm() {

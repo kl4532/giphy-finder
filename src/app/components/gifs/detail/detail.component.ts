@@ -5,6 +5,7 @@ import {Subscription} from "rxjs";
 import {Gif} from "../../../shared/models/gif.model";
 import {FavoritesService} from "../../../services/favorites.service";
 import {saveAs} from "file-saver";
+import { faFacebook, faTwitter } from '@fortawesome/free-brands-svg-icons';
 
 @Component({
   selector: 'app-gif-detail',
@@ -15,11 +16,12 @@ export class GifComponent implements OnInit {
   sub: Subscription | undefined;
   gif: Gif | undefined;
   gifId: string | null | undefined;
+  icons = {faTwitter, faFacebook,};
 
   constructor(private activatedRoute: ActivatedRoute,
               private router: Router,
               private gifService: GifsService,
-              private favoritesService: FavoritesService) { }
+              public favoritesService: FavoritesService) { }
 
   ngOnInit(): void {
     this.gifId = this.activatedRoute.snapshot.paramMap.get('id');
@@ -27,12 +29,6 @@ export class GifComponent implements OnInit {
       this.sub = this.gifService.getGifById(this.gifId).subscribe((gif: Gif) => {
         this.gif = gif;
       });
-    }
-  }
-
-  addToFavourites() {
-    if(this.gif) {
-      this.favoritesService.addToFavorites(this.gif);
     }
   }
 
