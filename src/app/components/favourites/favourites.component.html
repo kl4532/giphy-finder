@@ -1,1 +1,12 @@
-<p>favourites works!</p>
+<div *ngIf="gifs?.length !== 0; else message">
+  <div class="gif-container" *ngFor="let gif of gifs">
+    <img [src]="gif.urlDownsized" [alt]="gif.title"/>
+    <mat-icon (click)="removeFromFavorites(gif.id)">remove_circle</mat-icon>
+    <mat-icon (click)="download(gif.id)">download</mat-icon>
+    <mat-icon (click)="share()">share</mat-icon>
+  </div>
+</div>
+
+<ng-template #message><i>You have no favorites gifs</i></ng-template>
+
+
