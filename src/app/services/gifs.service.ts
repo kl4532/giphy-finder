@@ -20,16 +20,7 @@ export class GifsService {
           console.log('unfiltered', res);
           const gifs = []
           for (let el of res.data) {
-            const gif = {
-              id: el.id,
-              title: el.title,
-              urlGiphy: el.images.original.mp4,
-              urlPreview: el.images.preview_webp.url,
-              type: el.type,
-              username: el.username,
-              rating: el.rating,
-              date: el.import_datetime
-            }
+            const gif = this.createGifObject(el);
             gifs.push(gif)
           }
           return gifs;
@@ -49,16 +40,7 @@ export class GifsService {
       .pipe(
         map((res: any) => {
           const el = res.data;
-          return {
-            id: el.id,
-            title: el.title,
-            urlGiphy: el.images.original.mp4,
-            urlPreview: el.images.preview_webp.url,
-            type: el.type,
-            username: el.username,
-            rating: el.rating,
-            date: el.import_datetime
-          }
+          return this.createGifObject(el);
         }),
         tap(data => console.log('gif from service', data)),
         catchError(this.handleError)
@@ -67,6 +49,20 @@ export class GifsService {
 
   getRandomGif(id: String) {
     return this.http.get(`${this.baseUrl}/gifs/random?api_key=${this.apiKey}`);
+  }
+
+  createGifObject(el: any): Gif {
+    return {
+      id: el.id,
+      title: el.title,
+      urlGiphy: el.images.original.mp4,
+      urlPreview: el.images.preview_webp.url,
+      urlDownsized: el.images.downsized.url,
+      type: el.type,
+      username: el.username,
+      rating: el.rating,
+      date: el.import_datetime
+    }
   }
 
   private handleError(err: any): Observable<never> {
