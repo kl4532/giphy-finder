@@ -9,13 +9,14 @@ import { SearchComponent } from './components/search/search.component';
 import { FavouritesComponent } from './components/favourites/favourites.component';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import {HttpClientModule} from "@angular/common/http";
-import { ChiplistComponent } from './components/chiplist/chiplist.component';
 import {FlexLayoutModule} from "@angular/flex-layout";
 import {ReactiveFormsModule} from "@angular/forms";
 import {environment} from "../environments/environment";
 import { GifsOverviewComponent } from './components/gifs/overview/overview.component';
 import { GifComponent } from './components/gifs/detail/detail.component';
 import {CommonModule} from "@angular/common";
+import {ShareModule} from "ngx-sharebuttons";
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,6 @@ import {CommonModule} from "@angular/common";
     FavouritesComponent,
     GifComponent,
     ToolbarComponent,
-    ChiplistComponent,
     GifsOverviewComponent,
     GifComponent,
   ],
@@ -36,7 +36,9 @@ import {CommonModule} from "@angular/common";
     HttpClientModule,
     FlexLayoutModule,
     ReactiveFormsModule,
-    CommonModule
+    CommonModule,
+    ShareModule,
+    FontAwesomeModule
   ],
   providers: [
     {
