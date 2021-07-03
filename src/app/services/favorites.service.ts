@@ -1,7 +1,7 @@
 import {Inject, Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Gif} from "../shared/models/gif.model";
-import {BehaviorSubject, Observable, Subject} from "rxjs";
+import {BehaviorSubject, Observable, of} from "rxjs";
 import {map} from "rxjs/operators";
 
 @Injectable({
@@ -30,6 +30,14 @@ export class FavoritesService {
     gifs = gifs.filter((gif: Gif) => gif.id !== id);
     localStorage.setItem("gifs", JSON.stringify(gifs));
     this.changesSubject.next(null);
+  }
+
+  isFavorite(id: string): Observable<boolean> {
+    const found = this.getLs().find((gif: Gif) => gif.id === id);
+    if(found) {
+      return of(true);
+    }
+    return of(false);
   }
 
   getLs(): Gif[] {
