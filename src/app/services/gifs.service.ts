@@ -74,6 +74,9 @@ export class GifsService {
     } else {
       // The backend returned an unsuccessful response code.
       // The response body may contain clues as to what went wrong,
+      if(err.status === 403) {
+        alert("No connection with server, please set API_KEY in env file");
+      }
       errorMessage = `Backend returned code ${err.status}: ${err.body.error}`;
     }
     console.error(err);
