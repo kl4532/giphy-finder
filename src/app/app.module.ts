@@ -17,6 +17,7 @@ import { GifComponent } from './components/gifs/detail/detail.component';
 import {CommonModule} from "@angular/common";
 import {ShareModule} from "ngx-sharebuttons";
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import {MasonryGalleryModule} from "ngx-masonry-gallery";
 
 @NgModule({
   declarations: [
@@ -26,7 +27,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     GifComponent,
     ToolbarComponent,
     GifsOverviewComponent,
-    GifComponent,
+    GifComponent
   ],
   imports: [
     BrowserModule,
@@ -38,7 +39,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     ReactiveFormsModule,
     CommonModule,
     ShareModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    MasonryGalleryModule
   ],
   providers: [
     {

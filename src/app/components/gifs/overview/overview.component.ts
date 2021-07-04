@@ -10,6 +10,8 @@ import {
 import {Gif} from "../../../shared/models/gif.model";
 import {fromEvent, Subscription} from "rxjs";
 import {GifsService} from "../../../services/gifs.service";
+import {IMasonryGalleryImage} from "ngx-masonry-gallery";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-gifs-overview',
@@ -23,20 +25,25 @@ export class GifsOverviewComponent implements OnChanges, OnDestroy, OnInit {
   loadInit = 10;
   begin = 0;
   load = this.loadInit;
-  cols = 3;
   sub: Subscription | undefined;
-  bodyElement: HTMLElement;
 
   constructor(private el: ElementRef,
-              private gifService: GifsService) {
+              private gifService: GifsService,
+              private router: Router) {
     // it took me a while(3h) to figure out why listening to scroll event is not working on this component
     // it's because scroll event is triggered on body here, that's why I couldn't use popular
     // ngx-infinite-scroll lib, or rather I don't know how to utilize it here... yet :)
-    this.bodyElement = document.body
-    const sub = fromEvent(this.bodyElement, "scroll").subscribe(() => {
-      if(( this.bodyElement.offsetHeight + this.bodyElement.scrollTop) >=  this.bodyElement.scrollHeight) {
+    const body = document.body
+    const sub = fromEvent(body, "scroll").subscribe(() => {
+      if(( body.offsetHeight + body.scrollTop) >=  body.scrollHeight) {
         this.loadMoreGifs();
       }
+    });
+  }
+  public get dg(): IMasonryGalleryImage[] {
+    return this.displayedGifs.map(m => <IMasonryGalleryImage>{
+      imageUrl: m.urlDownsized,
+      alt: m.id
     });
   }
 
@@ -46,8 +53,6 @@ export class GifsOverviewComponent implements OnChanges, OnDestroy, OnInit {
       this.displayedGifs = overviewGifs.gifs;
       this.begin = overviewGifs.begin;
       this.load = overviewGifs.load;
-      this.cols = overviewGifs.cols;
-      setTimeout(() => this.bodyElement.scrollTo(0, overviewGifs.scrollTop),10);
     }
   }
 
@@ -57,32 +62,9 @@ export class GifsOverviewComponent implements OnChanges, OnDestroy, OnInit {
       this.begin = 0;
       this.load = this.loadInit;
       this.loadMoreGifs();
-      this.setColumns(window.innerWidth);
     }
   }
 
-  onResize(event: any) {
-    this.setColumns(event.target.innerWidth);
-  }
-
-  setColumns(windowSize: Number) {
-    switch (true) {
-      case (windowSize <= 500):
-        this.cols = 1;
-        break;
-      case (windowSize <= 700 && windowSize > 500):
-        this.cols = 2;
-        break;
-      case (windowSize <= 1000 && windowSize > 700):
-        this.cols = 3;
-        break;
-      case (windowSize > 1200):
-        this.cols = 4;
-        break;
-      default:
-        break;
-    }
-  }
   // to limit displayed gifs
   loadMoreGifs() {
     let part;
@@ -106,10 +88,13 @@ export class GifsOverviewComponent implements OnChanges, OnDestroy, OnInit {
       gifs: this.displayedGifs,
       begin: this.begin,
       load: this.load,
-      cols: this.cols,
-      scrollTop: this.bodyElement.scrollTop
     }
     this.gifService.setOverviewGifs(overviewGifs);
+  }
+
+  gifClick(event: any) {
+    this.router.navigate(['/gif', event.alt]);
+
   }
 
   ngOnDestroy() {

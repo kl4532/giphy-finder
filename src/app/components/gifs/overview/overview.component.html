@@ -1,10 +1,2 @@
-<mat-grid-list
-  [cols]="cols"
-  rowHeight="1:1"
-  (window:resize)="onResize($event)">
-  <mat-grid-tile *ngFor="let gif of displayedGifs">
-    <img [routerLink]="['/gif', gif.id]" [src]="gif.urlDownsized" [alt]="gif.title"/>
-  </mat-grid-tile>
-</mat-grid-list>
-
+<ngx-masonry-gallery class="gallery" [width]='350' [images]='dg' (clickImage)="gifClick($event)" [gutter]="10" [verticalGutter]="10"></ngx-masonry-gallery>
 <p *ngIf="gifs.length === 0 && formSubmitted">No results for this phrase :(</p>
