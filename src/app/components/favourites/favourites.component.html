@@ -1,15 +1,14 @@
-
 <div fxLayoutAlign="align-items center" fxLayout="column">
   <h1>Your gif collection</h1>
   <div class="container" *ngIf="gifs?.length !== 0; else message" fxLayout="column" >
     <div class="gif-container" *ngFor="let gif of gifs" fxLayout="column" fxLayoutGap="1.5em">
       <img [routerLink]="['/gif', gif.id]" [src]="gif.urlDownsized" [alt]="gif.title"/>
       <div fxLayout="row" fxLayoutGap=".5em" fxLayoutAlign="center">
-        <button mat-fab color="basic" aria-label="Remove from favorites button">
-          <mat-icon (click)="removeFromFavorites(gif.id)">delete</mat-icon>
+        <button mat-fab color="basic" aria-label="Remove from favorites button" (click)="removeFromFavorites(gif.id)">
+          <mat-icon>delete</mat-icon>
         </button>
-        <button mat-fab color="primary" aria-label="Download button">
-          <mat-icon (click)="download(gif.id)">download</mat-icon>
+        <button mat-fab color="primary" aria-label="Download button" (click)="download(gif.id)">
+          <mat-icon>download</mat-icon>
         </button>
       </div>
     </div>

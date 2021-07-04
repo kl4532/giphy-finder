@@ -1,20 +1,23 @@
-import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FavoritesService} from "../../services/favorites.service";
 import {Gif} from "../../shared/models/gif.model";
 import {saveAs} from "file-saver";
+import {Subscription} from "rxjs";
 
 @Component({
   selector: 'app-favourites',
   templateUrl: './favourites.component.html',
   styleUrls: ['./favourites.component.scss']
 })
-export class FavouritesComponent implements OnInit {
+export class FavouritesComponent implements OnInit, OnDestroy {
   gifs: Gif[] | undefined;
+  sub: Subscription | undefined;
+  subDownload: Subscription | undefined;
 
   constructor(private favoritesService: FavoritesService) { }
 
   ngOnInit(): void {
-    this.favoritesService.changesSubject.subscribe(()=> this.gifs = this.favoritesService.getFromFavorites());
+    this.sub = this.favoritesService.changesSubject.subscribe(()=> this.gifs = this.favoritesService.getFromFavorites());
   }
 
   removeFromFavorites(id: string) {
@@ -30,7 +33,8 @@ export class FavouritesComponent implements OnInit {
       }
   }
 
-  share() {
-
+  ngOnDestroy() {
+    this.sub?.unsubscribe();
+    this.subDownload?.unsubscribe();
   }
 }

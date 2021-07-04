@@ -15,11 +15,10 @@ export class ToolbarComponent implements OnInit {
 
   setOverviewState() {
     const overviewGifs = {
+      allGifs: [],
       gifs: [],
       begin: 0,
-      load: 0,
-      cols: 3,
-      scrollTop: 0
+      load: 0
     }
     this.gifService.setOverviewGifs(overviewGifs);
   }

@@ -1,8 +1,6 @@
-@import '../../shared/global';
-
 form {
   width: 100%;
-  margin: 1em 0 0 2em;
+  margin: 1em 0 2em 0;
 }
 
 .search-container {
@@ -28,20 +26,6 @@ form {
     top: 15%;
     left: 22%;
   }
-}
-@media (min-width : $screen-tablet) {
-  .search-container {
-    padding-left: 1em;
-  }
-  form {width: 80%;}
-}
-
-@media (min-width : $screen-laptop) {
-  form {width: 60%;}
-}
-
-@media (min-width : $screen-large) {
-  form {width: 50%;}
 }
 
 

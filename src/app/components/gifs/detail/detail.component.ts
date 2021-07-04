@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {GifsService} from "../../../services/gifs.service";
 import {Subscription} from "rxjs";
@@ -12,8 +12,9 @@ import { faFacebook, faTwitter } from '@fortawesome/free-brands-svg-icons';
   templateUrl: './detail.component.html',
   styleUrls: ['./detail.component.scss']
 })
-export class GifComponent implements OnInit {
+export class GifComponent implements OnInit, OnDestroy {
   sub: Subscription | undefined;
+  subDownload: Subscription | undefined;
   gif: Gif | undefined;
   gifId: string | null | undefined;
   icons = {faTwitter, faFacebook,};
@@ -34,14 +35,15 @@ export class GifComponent implements OnInit {
 
   download() {
     if(this.gif) {
-      this.favoritesService.downloadGif(this.gif).subscribe((blob: Blob) => {
+      this.subDownload = this.favoritesService.downloadGif(this.gif).subscribe((blob: Blob) => {
         saveAs(blob, `${this.gif?.title}.gif`);
       });
     }
   }
 
-  ngOnDestroy(): void {
+  ngOnDestroy() {
     this.sub?.unsubscribe();
+    this.subDownload?.unsubscribe();
   }
 
 

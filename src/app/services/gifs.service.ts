@@ -25,10 +25,9 @@ export class GifsService {
   }
 
   getGifs(query: String): Observable<Gif[]>{
-    return this.http.get(`${this.baseUrl}/gifs/search?api_key=${this.apiKey}&q=${query}&tag=science&limit=1000&offset=0&rating=G&lang=en`)
+    return this.http.get(`${this.baseUrl}/gifs/search?api_key=${this.apiKey}&q=${query}&limit=1000&offset=0&rating=G`)
       .pipe(
         map((res: any) => {
-          console.log('unfiltered', res);
           const gifs = []
           for (let el of res.data) {
             const gif = this.createGifObject(el);
@@ -41,12 +40,7 @@ export class GifsService {
       );
   }
 
-  getCategories() {
-    return this.http.get(`${this.baseUrl}/gifs/categories?api_key=${this.apiKey}&limit=50&offset=0&rating=G&lang=en`)
-  }
-
   getGifById(id: String): Observable<Gif> {
-    console.log(id);
     return this.http.get(`${this.baseUrl}/gifs/${id}?api_key=${this.apiKey}`)
       .pipe(
         map((res: any) => {
@@ -56,10 +50,6 @@ export class GifsService {
         tap(data => console.log('gif from service', data)),
         catchError(this.handleError)
       );
-  }
-
-  getRandomGif(id: String) {
-    return this.http.get(`${this.baseUrl}/gifs/random?api_key=${this.apiKey}`);
   }
 
   createGifObject(el: any): Gif {

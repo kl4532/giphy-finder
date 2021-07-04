@@ -49,6 +49,7 @@ export class GifsOverviewComponent implements OnChanges, OnDestroy, OnInit {
   ngOnInit() {
     const overviewGifs = this.gifService.getOverviewGifs();
     if(overviewGifs) {
+      this.gifs = overviewGifs.allGifs;
       this.displayedGifs = overviewGifs.gifs;
       this.begin = overviewGifs.begin;
       this.load = overviewGifs.load;
@@ -72,7 +73,6 @@ export class GifsOverviewComponent implements OnChanges, OnDestroy, OnInit {
 
     if(this.loadInit > this.gifs.length - this.begin) {
       part = this.gifs.slice(this.displayedGifs.length, this.gifs.length);
-      // console.log('last part', part);
     } else {
       part = this.gifs.slice(this.displayedGifs.length, this.load);
     }
@@ -80,10 +80,13 @@ export class GifsOverviewComponent implements OnChanges, OnDestroy, OnInit {
     this.displayedGifs = this.displayedGifs.concat(part);
     this.begin = this.begin + this.loadInit + 1;
     this.load = this.begin + this.loadInit;
+
+    this.setOverviewState();
   }
 
   setOverviewState() {
     const overviewGifs = {
+      allGifs: this.gifs,
       gifs: this.displayedGifs,
       begin: this.begin,
       load: this.load,
@@ -97,7 +100,6 @@ export class GifsOverviewComponent implements OnChanges, OnDestroy, OnInit {
   }
 
   ngOnDestroy() {
-    this.setOverviewState()
     this.sub?.unsubscribe();
   }
 }
