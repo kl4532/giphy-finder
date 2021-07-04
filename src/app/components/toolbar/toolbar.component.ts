@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {GifsService} from "../../services/gifs.service";
 
 @Component({
   selector: 'app-toolbar',
@@ -7,9 +8,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ToolbarComponent implements OnInit {
 
-  constructor() { }
+  constructor(private gifService: GifsService) { }
 
   ngOnInit(): void {
+  }
+
+  setOverviewState() {
+    const overviewGifs = {
+      gifs: [],
+      begin: 0,
+      load: 0,
+      cols: 3,
+      scrollTop: 0
+    }
+    this.gifService.setOverviewGifs(overviewGifs);
   }
 
 }

@@ -1,5 +1,5 @@
 <mat-toolbar color="primary" fxLayoutAlign="space-between">
-  <button [routerLink]="['']" mat-icon-button class="toolbar-icon home-icon" aria-label="Home icon">
+  <button [routerLink]="['']" mat-icon-button class="toolbar-icon home-icon" aria-label="Home icon" (click)="setOverviewState()">
     <mat-icon fxFlexAlign="center">home</mat-icon>
   </button>
   <button [routerLink]="['favourites']" mat-icon-button class="toolbar-icon fav-icon" aria-label="Favourites icon">

@@ -3,15 +3,26 @@ import {HttpClient} from "@angular/common/http";
 import {catchError, map, tap} from "rxjs/operators";
 import {Gif} from "../shared/models/gif.model";
 import {Observable, throwError} from "rxjs";
+import {OverviewGifs} from "../shared/models/overviewGifs.model";
 
 @Injectable({
   providedIn: 'root'
 })
 export class GifsService {
 
+  private overviewGifs: OverviewGifs | undefined;
+
   constructor(private http: HttpClient,
               @Inject('API_KEY') private apiKey: string,
               @Inject('API_BASE_URL') private baseUrl: string) { }
+
+  setOverviewGifs(overviewGifs: OverviewGifs) {
+      this.overviewGifs = overviewGifs;
+  }
+
+  getOverviewGifs(): OverviewGifs | undefined{
+    return this.overviewGifs;
+  }
 
   getGifs(query: String): Observable<Gif[]>{
     return this.http.get(`${this.baseUrl}/gifs/search?api_key=${this.apiKey}&q=${query}&tag=science&limit=1000&offset=0&rating=G&lang=en`)
