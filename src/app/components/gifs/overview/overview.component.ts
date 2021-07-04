@@ -26,16 +26,15 @@ export class GifsOverviewComponent implements OnChanges, OnDestroy, OnInit {
   begin = 0;
   load = this.loadInit;
   sub: Subscription | undefined;
-
   constructor(private el: ElementRef,
               private gifService: GifsService,
               private router: Router) {
     // it took me a while(3h) to figure out why listening to scroll event is not working on this component
     // it's because scroll event is triggered on body here, that's why I couldn't use popular
     // ngx-infinite-scroll lib, or rather I don't know how to utilize it here... yet :)
-    const body = document.body
+    const body = document.body;
     const sub = fromEvent(body, "scroll").subscribe(() => {
-      if(( body.offsetHeight + body.scrollTop) >=  body.scrollHeight) {
+      if(( body.offsetHeight + body.scrollTop) >=  body.scrollHeight-1) {
         this.loadMoreGifs();
       }
     });
