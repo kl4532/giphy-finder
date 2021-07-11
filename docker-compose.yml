@@ -1,0 +1,13 @@
+version: '3.8'
+services:
+  app:
+    container_name: giphy-finder
+    build: .
+    ports:
+      - "80:80"
+    tty: true
+    expose:
+      - "80"
+    stdin_open: true
+    environment:
+      - MODE=dev
