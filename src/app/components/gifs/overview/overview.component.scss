@@ -1,0 +1,33 @@
+.search {
+  display: flex;
+  justify-content: center;
+}
+app-search {
+  width: 100%;
+  padding: 0em 1em;
+}
+
+.container {
+  margin-left: 2em;
+}
+
+@media (min-width: 400px) {
+  app-search {
+    width: 80%;
+  }
+}
+
+@media (min-width: 1000px) {
+  app-search {
+    width: 60%;
+  }
+}
+
+@media (min-width: 1400px) {
+  app-search {
+    width: 50%;
+  }
+}
+
+
+

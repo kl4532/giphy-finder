@@ -1,8 +1,22 @@
 .container {
   margin: 1em;
-  width: 40em;
+  max-width: 320px;
 }
 
 .gif-container {
-  margin: 2.5em 1em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  img {
+    padding-bottom: .5em;
+    max-width: 315px;
+  }
+}
+
+@media (min-width: 450px) {
+  .gif-container {
+    img {
+      max-width: 450px;
+    }
+  }
 }

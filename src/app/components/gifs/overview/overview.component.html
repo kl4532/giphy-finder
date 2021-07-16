@@ -1,2 +1,8 @@
-<ngx-masonry-gallery class="gallery" [width]='350' [images]='dg' (clickImage)="gifClick($event)" [gutter]="10" [verticalGutter]="10"></ngx-masonry-gallery>
-<p *ngIf="gifs.length === 0 && formSubmitted">No results for this phrase :(</p>
+<div class="search">
+  <app-search (gifs)="getGifsFromSearch($event)"></app-search>
+</div>
+
+<div class="container">
+  <ngx-masonry-gallery class="gallery" [width]="windowWidth<700 ? 300 : 350" [images]='dg' (clickImage)="gifClick($event)" [gutter]="10" [verticalGutter]="10"></ngx-masonry-gallery>
+  <p *ngIf="gifs.length === 0 && formSubmitted">No results for this phrase :(</p>
+</div>

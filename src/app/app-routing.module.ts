@@ -3,15 +3,16 @@ import { RouterModule, Routes } from '@angular/router';
 import {GifComponent} from "./components/gifs/detail/detail.component";
 import {SearchComponent} from "./components/search/search.component";
 import {FavouritesComponent} from "./components/favourites/favourites.component";
+import {GifsOverviewComponent} from "./components/gifs/overview/overview.component";
 
 const routes: Routes = [
   {
     path: '',
-    component: SearchComponent
+    component: GifsOverviewComponent
   },
   {
     path: 'search',
-    component: SearchComponent
+    component: GifsOverviewComponent
   },
   {
     path: 'gif/:id',

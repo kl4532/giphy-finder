@@ -1,9 +1,9 @@
 <div fxLayoutAlign="center">
   <div *ngIf="gif" class="gif-detail-container">
     <h2 fxLayoutAlign="center">{{gif.title}}</h2>
-    <div fxLayout="column" fxLayoutGap="1em" fxLayoutAlign="center">
+    <div>
       <img [src]="gif.urlDownsized" [alt]="gif.title"/>
-      <div fxLayout="row" fxLayoutAlign="space-between">
+      <div fxLayout="row wrap" fxLayoutAlign="space-between">
         <div class="action-buttons">
           <div fxLayout="row">
             <button *ngIf="!(this.favoritesService.isFavorite(gif.id) | async)"

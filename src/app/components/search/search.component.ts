@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit, Output, EventEmitter } from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {GifsService} from "../../services/gifs.service";
 import {Gif} from "../../shared/models/gif.model";
@@ -11,8 +11,8 @@ import {Subscription} from "rxjs";
 })
 export class SearchComponent implements OnInit, OnDestroy {
   searchForm: FormGroup | undefined;
-  gifs: Gif[] = [];
-  submitted = false;
+  @Output() gifs = new EventEmitter<Gif[]>();
+  @Output() submitted = new EventEmitter<boolean>(false);
   private sub: Subscription | undefined;
 
   constructor(private gifsService: GifsService) { }
@@ -25,8 +25,8 @@ export class SearchComponent implements OnInit, OnDestroy {
 
   submitForm() {
     this.sub = this.gifsService.getGifs(this.searchForm?.value.query).subscribe((gifs: any) => {
-        this.gifs = gifs;
-        this.submitted = true;
+        this.gifs.emit(gifs)
+        this.submitted.emit(true);
     });
   }
 

@@ -1,7 +1,7 @@
 <div fxLayoutAlign="align-items center" fxLayout="column">
   <h1>Your gif collection</h1>
   <div class="container" *ngIf="gifs?.length !== 0; else message" fxLayout="column" >
-    <div class="gif-container" *ngFor="let gif of gifs" fxLayout="column" fxLayoutGap="1.5em">
+    <div class="gif-container" *ngFor="let gif of gifs">
       <img [routerLink]="['/gif', gif.id]" [src]="gif.urlDownsized" [alt]="gif.title"/>
       <div fxLayout="row" fxLayoutGap=".5em" fxLayoutAlign="center">
         <button mat-fab color="basic" aria-label="Remove from favorites button" (click)="removeFromFavorites(gif.id)">
